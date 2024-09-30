@@ -113,7 +113,7 @@ env/**
 .vscode/**
 
 # Original Source (Dev)
-pandas_ta/_wrapper.py
+pandas_ta_mle/_wrapper.py
 
 # twopirllc stuff
 notes.md

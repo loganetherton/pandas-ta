@@ -18,7 +18,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = "pandas_ta"
+project = "pandas_ta_mle"
 copyright = "2019, Kevin Johnson"
 author = "Kevin Johnson"
 

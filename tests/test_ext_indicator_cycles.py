@@ -1,6 +1,6 @@
 from pandas.core.series import Series
 from .config import sample_data
-from .context import pandas_ta
+from .context import pandas_ta_mle as pandas_ta
 
 from unittest import TestCase
 from pandas import DataFrame

@@ -4,20 +4,20 @@ from distutils.core import setup
 long_description = "An easy to use Python 3 Pandas Extension with 130+ Technical Analysis Indicators. Can be called from a Pandas DataFrame or standalone like TA-Lib. Correlation tested with TA-Lib."
 
 setup(
-    name="pandas_ta",
+    name="pandas_ta_mle",
     packages=[
-        "pandas_ta",
-        "pandas_ta.candles",
-        "pandas_ta.cycles",
-        "pandas_ta.momentum",
-        "pandas_ta.overlap",
-        "pandas_ta.performance",
-        "pandas_ta.statistics",
-        "pandas_ta.trend",
-        "pandas_ta.utils",
-        "pandas_ta.utils.data",
-        "pandas_ta.volatility",
-        "pandas_ta.volume"
+        "pandas_ta_mle",
+        "pandas_ta_mle.candles",
+        "pandas_ta_mle.cycles",
+        "pandas_ta_mle.momentum",
+        "pandas_ta_mle.overlap",
+        "pandas_ta_mle.performance",
+        "pandas_ta_mle.statistics",
+        "pandas_ta_mle.trend",
+        "pandas_ta_mle.utils",
+        "pandas_ta_mle.utils.data",
+        "pandas_ta_mle.volatility",
+        "pandas_ta_mle.volume"
     ],
     version=".".join(("0", "3", "14b")),
     description=long_description,

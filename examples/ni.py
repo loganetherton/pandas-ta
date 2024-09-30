@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from pandas_ta.overlap import sma
-from pandas_ta.utils import get_offset, verify_series
+from pandas_ta_mle.overlap import sma
+from pandas_ta_mle.utils import get_offset, verify_series
 
 # - Standard definition of your custom indicator function (including docs)-
 

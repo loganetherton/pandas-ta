@@ -7,7 +7,7 @@ all:
 	make test_strats
 
 caches:
-	find ./pandas_ta | grep -E "(__pycache__|\.pyc|\.pyo$\)"
+	find ./pandas_ta_mle | grep -E "(__pycache__|\.pyc|\.pyo$\)"
 
 clean:
 	find . -name '*.pyc' -exec rm -f {} +
