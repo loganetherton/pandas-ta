@@ -29,8 +29,10 @@ def squeeze_pro(high, low, close, bb_length=None, bb_std=None, kc_length=None, k
 
     valid_kc_scaler = kc_scalar_wide > kc_scalar_normal and kc_scalar_normal > kc_scalar_narrow
 
-    if not valid_kc_scaler: return
-    if high is None or low is None or close is None: return
+    if not valid_kc_scaler:
+        return
+    if high is None or low is None or close is None:
+        return
 
     use_tr = kwargs.setdefault("tr", True)
     asint = kwargs.pop("asint", True)

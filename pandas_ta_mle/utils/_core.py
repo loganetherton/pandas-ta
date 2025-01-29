@@ -133,4 +133,7 @@ def verify_series(series: Series, min_length: int = None) -> Series:
     """If a Pandas Series and it meets the min_length of the indicator return it."""
     has_length = min_length is not None and isinstance(min_length, int)
     if series is not None and isinstance(series, Series):
-        return None if has_length and series.size < min_length else series
+        # @TODO WHAT HAPPENS HERE?
+        if has_length and series.size < min_length:
+            return None
+        return series

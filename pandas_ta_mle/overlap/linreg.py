@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from numpy import array as npArray
+from numpy import nan
 from numpy import arctan as npAtan
 from numpy import nan as npNaN
 from numpy import pi as npPi
@@ -21,7 +22,8 @@ def linreg(close, length=None, offset=None, **kwargs):
     slope = kwargs.pop("slope", False)
     tsf = kwargs.pop("tsf", False)
 
-    if close is None: return
+    if close is None:
+        return
 
     # Calculate Result
     x = range(1, length + 1)  # [1, 2, ..., n] from 1 to n keeps Sum(xy) low
@@ -49,7 +51,12 @@ def linreg(close, length=None, offset=None, **kwargs):
         if r:
             y2_sum = (series * series).sum()
             rn = length * xy_sum - x_sum * y_sum
-            rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+            _rn = divisor * (length * y2_sum - y_sum * y_sum)
+            if _rn < 0:
+                return nan
+            rd = _rn ** 0.5
+            if rd == 0:
+                return nan
             return rn / rd
 
         return m * length + b if tsf else m * (length - 1) + b
@@ -81,10 +88,14 @@ def linreg(close, length=None, offset=None, **kwargs):
 
     # Name and Categorize it
     linreg.name = f"LR"
-    if slope: linreg.name += "m"
-    if intercept: linreg.name += "b"
-    if angle: linreg.name += "a"
-    if r: linreg.name += "r"
+    if slope:
+        linreg.name += "m"
+    if intercept:
+        linreg.name += "b"
+    if angle:
+        linreg.name += "a"
+    if r:
+        linreg.name += "r"
 
     linreg.name += f"_{length}"
     linreg.category = "overlap"

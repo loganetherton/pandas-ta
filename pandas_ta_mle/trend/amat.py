@@ -17,7 +17,8 @@ def amat(close=None, fast=None, slow=None, lookback=None, mamode=None, offset=No
     offset = get_offset(offset)
     if "length" in kwargs: kwargs.pop("length")
 
-    if close is None: return
+    if close is None:
+        return
 
     # # Calculate Result
     fast_ma = ma(mamode, close, length=fast, **kwargs)

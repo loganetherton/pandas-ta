@@ -17,7 +17,8 @@ def atr(high, low, close, length=None, mamode=None, talib=None, drift=None, offs
     offset = get_offset(offset)
     mode_tal = bool(talib) if isinstance(talib, bool) else True
 
-    if high is None or low is None or close is None: return
+    if high is None or low is None or close is None:
+        return
 
     # Calculate Result
     if Imports["talib"] and mode_tal:

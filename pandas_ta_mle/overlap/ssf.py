@@ -14,7 +14,8 @@ def ssf(close, length=None, poles=None, offset=None, **kwargs):
     close = verify_series(close, length)
     offset = get_offset(offset)
 
-    if close is None: return
+    if close is None:
+        return
 
     # Calculate Result
     m = close.size

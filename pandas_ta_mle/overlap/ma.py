@@ -54,7 +54,8 @@ def ma(name:str = None, source:Series = None, **kwargs) -> Series:
     else: # "ema"
         name = _mas[1]
 
-    if   name == "dema": return dema(source, **kwargs)
+    if   name == "dema":
+        return dema(source, **kwargs)
     elif name == "fwma": return fwma(source, **kwargs)
     elif name == "hma": return hma(source, **kwargs)
     elif name == "linreg": return linreg(source, **kwargs)

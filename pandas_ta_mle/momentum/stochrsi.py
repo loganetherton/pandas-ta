@@ -16,7 +16,8 @@ def stochrsi(close, length=None, rsi_length=None, k=None, d=None, mamode=None, o
     offset = get_offset(offset)
     mamode = mamode if isinstance(mamode, str) else "sma"
 
-    if close is None: return
+    if close is None:
+        return
 
     # Calculate Result
     rsi_ = rsi(close, length=rsi_length)

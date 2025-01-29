@@ -13,7 +13,8 @@ def vp(close, volume, width=None, **kwargs):
     volume = verify_series(volume, width)
     sort_close = kwargs.pop("sort_close", False)
 
-    if close is None or volume is None: return
+    if close is None or volume is None:
+        return
 
     # Setup
     signed_price = signed_series(close, 1)

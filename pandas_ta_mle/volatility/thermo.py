@@ -17,7 +17,8 @@ def thermo(high, low, length=None, long=None, short=None, mamode=None, drift=Non
     offset = get_offset(offset)
     asint = kwargs.pop("asint", True)
 
-    if high is None or low is None: return
+    if high is None or low is None:
+        return
 
     # Calculate Result
     thermoL = (low.shift(drift) - low).abs()

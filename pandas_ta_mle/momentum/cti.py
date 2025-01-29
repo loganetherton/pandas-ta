@@ -10,7 +10,8 @@ def cti(close, length=None, offset=None, **kwargs) -> Series:
     close = verify_series(close, length)
     offset = get_offset(offset)
 
-    if close is None: return
+    if close is None:
+        return
 
     cti = linreg(close, length=length, r=True)
 

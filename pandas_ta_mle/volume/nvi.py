@@ -13,7 +13,8 @@ def nvi(close, volume, length=None, initial=None, offset=None, **kwargs):
     volume = verify_series(volume, length)
     offset = get_offset(offset)
 
-    if close is None or volume is None: return
+    if close is None or volume is None:
+        return
 
     # Calculate Result
     roc_ = roc(close=close, length=length)

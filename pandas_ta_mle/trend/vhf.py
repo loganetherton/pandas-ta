@@ -11,7 +11,8 @@ def vhf(close, length=None, drift=None, offset=None, **kwargs):
     drift = get_drift(drift)
     offset = get_offset(offset)
 
-    if close is None: return
+    if close is None:
+        return
 
     # Calculate Result
     hcp = close.rolling(length).max()

@@ -17,7 +17,8 @@ def macd(close, fast=None, slow=None, signal=None, talib=None, offset=None, **kw
     offset = get_offset(offset)
     mode_tal = bool(talib) if isinstance(talib, bool) else True
 
-    if close is None: return
+    if close is None:
+        return
 
     as_mode = kwargs.setdefault("asmode", False)
 

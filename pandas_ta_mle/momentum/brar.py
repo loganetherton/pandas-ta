@@ -17,7 +17,8 @@ def brar(open_, high, low, close, length=None, scalar=None, drift=None, offset=N
     drift = get_drift(drift)
     offset = get_offset(offset)
 
-    if open_ is None or high is None or low is None or close is None: return
+    if open_ is None or high is None or low is None or close is None:
+        return
 
     # Calculate Result
     hcy = non_zero_range(high, close.shift(drift))
@@ -75,8 +76,8 @@ Calculation:
 
     HO_Diff = high - open
     OL_Diff = open - low
-    HCY = high - close[-1]
-    CYL = close[-1] - low
+    HCY = high - close.iloc[-1]
+    CYL = close.iloc[-1] - low
     HCY[HCY < 0] = 0
     CYL[CYL < 0] = 0
     AR = scalar * SUM(HO, length) / SUM(OL, length)

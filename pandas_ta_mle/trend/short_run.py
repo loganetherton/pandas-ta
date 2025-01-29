@@ -12,7 +12,8 @@ def short_run(fast, slow, length=None, offset=None, **kwargs):
     slow = verify_series(slow, length)
     offset = get_offset(offset)
 
-    if fast is None or slow is None: return
+    if fast is None or slow is None:
+        return
 
     # Calculate Result
     pt = decreasing(fast, length) & increasing(slow, length)  # potential top or top

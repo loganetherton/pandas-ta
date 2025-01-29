@@ -12,7 +12,8 @@ def ui(close, length=None, scalar=None, offset=None, **kwargs):
     close = verify_series(close, length)
     offset = get_offset(offset)
 
-    if close is None: return
+    if close is None:
+        return
 
     # Calculate Result
     highest_close = close.rolling(length).max()

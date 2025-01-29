@@ -17,7 +17,8 @@ def smi(close, fast=None, slow=None, signal=None, scalar=None, offset=None, **kw
     close = verify_series(close, max(fast, slow, signal))
     offset = get_offset(offset)
 
-    if close is None: return
+    if close is None:
+        return
 
     # Calculate Result
     tsi_df = tsi(close, fast=fast, slow=slow, signal=signal, scalar=scalar)

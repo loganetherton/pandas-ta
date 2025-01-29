@@ -11,7 +11,8 @@ def tos_stdevall(close, length=None, stds=None, ddof=None, offset=None, **kwargs
     """Indicator: TD Ameritrade's Think or Swim Standard Deviation All"""
     # Validate Arguments
     stds = stds if isinstance(stds, list) and len(stds) > 0 else [1, 2, 3]
-    if min(stds) <= 0: return
+    if min(stds) <= 0:
+        return
     if not all(i < j for i, j in zip(stds, stds[1:])):
         stds = stds[::-1]
     ddof = int(ddof) if ddof and ddof >= 0 and ddof < length else 1
@@ -27,7 +28,8 @@ def tos_stdevall(close, length=None, stds=None, ddof=None, offset=None, **kwargs
 
     close = verify_series(close, length)
 
-    if close is None: return
+    if close is None:
+        return
 
     # Calculate Result
     X = src_index = close.index

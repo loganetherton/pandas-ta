@@ -12,7 +12,8 @@ def vidya(close, length=None, drift=None, offset=None, **kwargs):
     drift = get_drift(drift)
     offset = get_offset(offset)
 
-    if close is None: return
+    if close is None:
+        return
 
     def _cmo(source: Series, n:int , d: int):
         """Chande Momentum Oscillator (CMO) Patch
@@ -71,8 +72,8 @@ Calculation:
     Default Inputs:
         length=10, adjust=False, sma=True
     if sma:
-        sma_nth = close[0:length].sum() / length
-        close[:length - 1] = np.NaN
+        sma_nth = close.iloc[0:length].sum() / length
+        close.iloc[:length - 1] = np.NaN
         close.iloc[length - 1] = sma_nth
     EMA = close.ewm(span=length, adjust=adjust).mean()
 

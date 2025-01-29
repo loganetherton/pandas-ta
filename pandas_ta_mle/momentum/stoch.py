@@ -17,7 +17,8 @@ def stoch(high, low, close, k=None, d=None, smooth_k=None, mamode=None, offset=N
     offset = get_offset(offset)
     mamode = mamode if isinstance(mamode, str) else "sma"
 
-    if high is None or low is None or close is None: return
+    if high is None or low is None or close is None:
+        return
 
     # Calculate Result
     lowest_low = low.rolling(k).min()

@@ -74,8 +74,8 @@ Sources:
     https://www.investopedia.com/terms/h/heikinashi.asp
 
 Calculation:
-    HA_OPEN[0] = (open[0] + close[0]) / 2
-    HA_CLOSE = (open[0] + high[0] + low[0] + close[0]) / 4
+    HA_OPEN[0] = (open.iloc[0] + close.iloc[0]) / 2
+    HA_CLOSE = (open.iloc[0] + high.iloc[0] + low.iloc[0] + close.iloc[0]) / 4
 
     for i > 1 in df.index:
         HA_OPEN = (HA_OPEN[i−1] + HA_CLOSE[i−1]) / 2

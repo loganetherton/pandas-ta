@@ -18,7 +18,8 @@ def adx(high, low, close, length=None, lensig=None, scalar=None, mamode=None, dr
     drift = get_drift(drift)
     offset = get_offset(offset)
 
-    if high is None or low is None or close is None: return
+    if high is None or low is None or close is None:
+        return
 
     # Calculate Result
     atr_ = atr(high=high, low=low, close=close, length=length)

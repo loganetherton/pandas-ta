@@ -17,7 +17,8 @@ def ichimoku(high, low, close, tenkan=None, kijun=None, senkou=None, include_chi
     if not kwargs.get("lookahead", True):
         include_chikou = False
 
-    if high is None or low is None or close is None: return None, None
+    if high is None or low is None or close is None:
+        return None, None
 
     # Calculate Result
     tenkan_sen = midprice(high=high, low=low, length=tenkan)

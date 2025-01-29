@@ -14,7 +14,8 @@ def trix(close, length=None, signal=None, scalar=None, drift=None, offset=None, 
     drift = get_drift(drift)
     offset = get_offset(offset)
 
-    if close is None: return
+    if close is None:
+        return
 
     # Calculate Result
     ema1 = ema(close=close, length=length, **kwargs)

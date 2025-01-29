@@ -19,7 +19,8 @@ def kvo(high, low, close, volume, fast=None, slow=None, signal=None, mamode=None
     drift = get_drift(drift)
     offset = get_offset(offset)
 
-    if high is None or low is None or close is None or volume is None: return
+    if high is None or low is None or close is None or volume is None:
+        return
 
     # Calculate Result
     signed_volume = volume * signed_series(hlc3(high, low, close), 1)

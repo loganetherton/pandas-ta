@@ -24,7 +24,8 @@ def squeeze(high, low, close, bb_length=None, bb_std=None, kc_length=None, kc_sc
     close = verify_series(close, _length)
     offset = get_offset(offset)
 
-    if high is None or low is None or close is None: return
+    if high is None or low is None or close is None:
+        return
 
     use_tr = kwargs.setdefault("tr", True)
     asint = kwargs.pop("asint", True)

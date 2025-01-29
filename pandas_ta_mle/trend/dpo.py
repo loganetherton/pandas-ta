@@ -12,7 +12,8 @@ def dpo(close, length=None, centered=True, offset=None, **kwargs):
     if not kwargs.get("lookahead", True):
         centered = False
 
-    if close is None: return
+    if close is None:
+        return
 
     # Calculate Result
     t = int(0.5 * length) + 1

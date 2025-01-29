@@ -16,7 +16,8 @@ def accbands(high, low, close, length=None, c=None, drift=None, mamode=None, off
     drift = get_drift(drift)
     offset = get_offset(offset)
 
-    if high is None or low is None or close is None: return
+    if high is None or low is None or close is None:
+        return
 
     # Calculate Result
     high_low_range = non_zero_range(high, low)

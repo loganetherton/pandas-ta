@@ -13,7 +13,8 @@ def pgo(high, low, close, length=None, offset=None, **kwargs):
     close = verify_series(close, length)
     offset = get_offset(offset)
 
-    if high is None or low is None or close is None: return
+    if high is None or low is None or close is None:
+        return
 
     # Calculate Result
     pgo = close - sma(close, length)

@@ -11,7 +11,8 @@ def er(close, length=None, drift=None, offset=None, **kwargs):
     offset = get_offset(offset)
     drift = get_drift(drift)
 
-    if close is None: return
+    if close is None:
+        return
 
     # Calculate Result
     abs_diff = close.diff(length).abs()

@@ -12,7 +12,8 @@ def rsx(close, length=None, drift=None, offset=None, **kwargs):
     drift = get_drift(drift)
     offset = get_offset(offset)
 
-    if close is None: return
+    if close is None:
+        return
 
     # variables
     vC, v1C = 0, 0

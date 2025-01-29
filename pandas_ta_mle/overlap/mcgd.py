@@ -10,7 +10,8 @@ def mcgd(close, length=None, offset=None, c=None, **kwargs):
     close = verify_series(close, length)
     offset = get_offset(offset)
 
-    if close is None: return
+    if close is None:
+        return
 
     # Calculate Result
     close = close.copy()
@@ -20,8 +21,8 @@ def mcgd(close, length=None, offset=None, c=None, **kwargs):
         series.iloc[1] = (series.iloc[0] + ((series.iloc[1] - series.iloc[0]) / denom))
         return series.iloc[1]
 
-    mcg_cell = close[0:].rolling(2, min_periods=2).apply(mcg_, raw=False)
-    mcg_ds = close[:1].append(mcg_cell[1:])
+    mcg_cell = close.iloc[0:].rolling(2, min_periods=2).apply(mcg_, raw=False)
+    mcg_ds = close.iloc[:1].append(mcg_cell[1:])
 
     # Offset
     if offset != 0:
@@ -64,8 +65,8 @@ Calculation:
         denom = (constant * length * (series.iloc[1] / series.iloc[0]) ** 4)
         series.iloc[1] = (series.iloc[0] + ((series.iloc[1] - series.iloc[0]) / denom))
         return series.iloc[1]
-    mcg_cell = close[0:].rolling(2, min_periods=2).apply(mcg_, raw=False)
-    mcg_ds = close[:1].append(mcg_cell[1:])
+    mcg_cell = close.iloc[0:].rolling(2, min_periods=2).apply(mcg_, raw=False)
+    mcg_ds = close.iloc[:1].append(mcg_cell[1:])
 
 Args:
     close (pd.Series): Series of 'close's

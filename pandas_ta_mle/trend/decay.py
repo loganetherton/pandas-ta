@@ -12,7 +12,8 @@ def decay(close, kind=None, length=None, mode=None, offset=None, **kwargs):
     close = verify_series(close, length)
     offset = get_offset(offset)
 
-    if close is None: return
+    if close is None:
+        return
 
     # Calculate Result
     _mode = "L"
@@ -21,7 +22,7 @@ def decay(close, kind=None, length=None, mode=None, offset=None, **kwargs):
         diff = close.shift(1) - npExp(-length)
     else:  # "linear"
         diff = close.shift(1) - (1 / length)
-    diff[0] = close[0]
+    diff[0] = close.iloc[0]
     tdf = DataFrame({"close": close, "diff": diff, "0": 0})
     ld = tdf.max(axis=1)
 
@@ -56,9 +57,9 @@ Calculation:
         length=5, mode=None
 
     if mode == "exponential" or mode == "exp":
-        max(close, close[-1] - exp(-length), 0)
+        max(close, close.iloc[-1] - exp(-length), 0)
     else:
-        max(close, close[-1] - (1 / length), 0)
+        max(close, close.iloc[-1] - (1 / length), 0)
 
 Args:
     close (pd.Series): Series of 'close's

@@ -21,7 +21,8 @@ def uo(high, low, close, fast=None, medium=None, slow=None, fast_w=None, medium_
     offset = get_offset(offset)
     mode_tal = bool(talib) if isinstance(talib, bool) else True
 
-    if high is None or low is None or close is None: return
+    if high is None or low is None or close is None:
+        return
 
     # Calculate Result
     if Imports["talib"] and mode_tal:

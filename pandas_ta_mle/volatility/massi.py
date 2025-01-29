@@ -16,7 +16,8 @@ def massi(high, low, fast=None, slow=None, offset=None, **kwargs):
     offset = get_offset(offset)
     if "length" in kwargs: kwargs.pop("length")
 
-    if high is None or low is None: return
+    if high is None or low is None:
+        return
 
     # Calculate Result
     high_low_range = non_zero_range(high, low)

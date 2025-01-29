@@ -10,7 +10,8 @@ def skew(close, length=None, offset=None, **kwargs):
     close = verify_series(close, max(length, min_periods))
     offset = get_offset(offset)
 
-    if close is None: return
+    if close is None:
+        return
 
     # Calculate Result
     skew = close.rolling(length, min_periods=min_periods).skew()

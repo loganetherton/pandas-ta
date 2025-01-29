@@ -17,7 +17,8 @@ def cdl_doji(open_, high, low, close, length=None, factor=None, scalar=None, asi
     offset = get_offset(offset)
     naive = kwargs.pop("naive", False)
 
-    if open_ is None or high is None or low is None or close is None: return
+    if open_ is None or high is None or low is None or close is None:
+        return
 
     # Calculate Result
     body = real_body(open_, close).abs()

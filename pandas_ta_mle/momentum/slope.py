@@ -13,7 +13,8 @@ def slope( close, length=None, as_angle=None, to_degrees=None, vertical=None, of
     close = verify_series(close, length)
     offset = get_offset(offset)
 
-    if close is None: return
+    if close is None:
+        return
 
     # Calculate Result
     slope = close.diff(length) / length

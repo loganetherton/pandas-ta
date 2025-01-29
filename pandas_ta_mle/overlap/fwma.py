@@ -10,7 +10,8 @@ def fwma(close, length=None, asc=None, offset=None, **kwargs):
     close = verify_series(close, length)
     offset = get_offset(offset)
 
-    if close is None: return
+    if close is None:
+        return
 
     # Calculate Result
     fibs = fibonacci(n=length, weighted=True)

@@ -9,7 +9,8 @@ def cg(close, length=None, offset=None, **kwargs):
     close = verify_series(close, length)
     offset = get_offset(offset)
 
-    if close is None: return
+    if close is None:
+        return
 
     # Calculate Result
     coefficients = [length - i for i in range(0, length)]

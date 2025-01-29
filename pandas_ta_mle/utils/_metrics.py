@@ -44,7 +44,7 @@ def calmar_ratio(close: Series, method: str = "percent", years: int = 3) -> floa
     close = verify_series(close)
 
     n_years_ago = close.index[-1] - Timedelta(days=365.25 * years)
-    close = close[close.index > n_years_ago]
+    close = close.iloc[close.index > n_years_ago]
 
     return cagr(close) / max_drawdown(close, method=method)
 
@@ -123,7 +123,8 @@ def max_drawdown(close: Series, method:str = None, all:bool = False) -> float:
         "percent": max_dd.iloc[1],
         "log": max_dd.iloc[2]
     }
-    if all: return max_dd_
+    if all:
+        return max_dd_
 
     if isinstance(method, str) and method in max_dd_.keys():
         return max_dd_[method]

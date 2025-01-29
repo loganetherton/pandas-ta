@@ -10,7 +10,8 @@ from pandas_ta_mle import EXCHANGE_TZ, RATE
 
 def df_dates(df: DataFrame, dates: Tuple[str, list] = None) -> DataFrame:
     """Yields the DataFrame with the given dates"""
-    if dates is None: return None
+    if dates is None:
+        return None
     if not isinstance(dates, list):
         dates = [dates]
     return df[df.index.isin(dates)]
@@ -19,7 +20,8 @@ def df_dates(df: DataFrame, dates: Tuple[str, list] = None) -> DataFrame:
 def df_month_to_date(df: DataFrame) -> DataFrame:
     """Yields the Month-to-Date (MTD) DataFrame"""
     in_mtd = df.index >= Timestamp.now().strftime("%Y-%m-01")
-    if any(in_mtd): return df[in_mtd]
+    if any(in_mtd):
+        return df[in_mtd]
     return df
 
 
@@ -29,14 +31,16 @@ def df_quarter_to_date(df: DataFrame) -> DataFrame:
     for m in [1, 4, 7, 10]:
         if now.month <= m:
                 in_qtr = df.index >= datetime(now.year, m, 1).strftime("%Y-%m-01")
-                if any(in_qtr): return df[in_qtr]
+                if any(in_qtr):
+                    return df[in_qtr]
     return df[df.index >= now.strftime("%Y-%m-01")]
 
 
 def df_year_to_date(df: DataFrame) -> DataFrame:
     """Yields the Year-to-Date (YTD) DataFrame"""
     in_ytd = df.index >= Timestamp.now().strftime("%Y-01-01")
-    if any(in_ytd): return df[in_ytd]
+    if any(in_ytd):
+        return df[in_ytd]
     return df
 
 

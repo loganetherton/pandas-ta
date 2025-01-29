@@ -12,7 +12,8 @@ def psl(close, open_=None, length=None, scalar=None, drift=None, offset=None, **
     drift = get_drift(drift)
     offset = get_offset(offset)
 
-    if close is None: return
+    if close is None:
+        return
 
     # Calculate Result
     if open_ is not None:
@@ -61,7 +62,7 @@ Calculation:
         length=12, scalar=100, drift=1
 
     IF NOT open:
-        DIFF = SIGN(close - close[drift])
+        DIFF = SIGN(close - close.iloc[drift])
     ELSE:
         DIFF = SIGN(close - open)
 

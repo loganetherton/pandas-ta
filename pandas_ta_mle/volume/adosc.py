@@ -19,7 +19,8 @@ def adosc(high, low, close, volume, open_=None, fast=None, slow=None, talib=None
     if "length" in kwargs: kwargs.pop("length")
     mode_tal = bool(talib) if isinstance(talib, bool) else True
 
-    if high is None or low is None or close is None or volume is None: return
+    if high is None or low is None or close is None or volume is None:
+        return
 
     # Calculate Result
     if Imports["talib"] and mode_tal:

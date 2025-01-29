@@ -11,7 +11,8 @@ def mom(close, length=None, talib=None, offset=None, **kwargs):
     offset = get_offset(offset)
     mode_tal = bool(talib) if isinstance(talib, bool) else True
 
-    if close is None: return
+    if close is None:
+        return
 
     # Calculate Result
     if Imports["talib"] and mode_tal:

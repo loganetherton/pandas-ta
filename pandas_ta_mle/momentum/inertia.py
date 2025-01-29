@@ -18,12 +18,14 @@ def inertia(close=None, high=None, low=None, length=None, rvi_length=None, scala
     drift = get_drift(drift)
     offset = get_offset(offset)
 
-    if close is None: return
+    if close is None:
+        return
 
     if refined or thirds:
         high = verify_series(high, _length)
         low = verify_series(low, _length)
-        if high is None or low is None: return
+        if high is None or low is None:
+            return
 
     # Calculate Result
     if refined:

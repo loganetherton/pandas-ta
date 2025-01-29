@@ -16,7 +16,8 @@ def fisher(high, low, length=None, signal=None, offset=None, **kwargs):
     low = verify_series(low, _length)
     offset = get_offset(offset)
 
-    if high is None or low is None: return
+    if high is None or low is None:
+        return
 
     # Calculate Result
     hl2_ = hl2(high, low)

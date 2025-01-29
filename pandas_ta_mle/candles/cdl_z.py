@@ -16,7 +16,8 @@ def cdl_z(open_, high, low, close, length=None, full=None, ddof=None, offset=Non
     offset = get_offset(offset)
     full = bool(full) if full is not None and full else False
 
-    if open_ is None or high is None or low is None or close is None: return
+    if open_ is None or high is None or low is None or close is None:
+        return
 
     # Calculate Result
     if full:

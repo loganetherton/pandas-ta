@@ -127,7 +127,8 @@ def linear_regression(x: Series, y: Series) -> dict:
 def log_geometric_mean(series: Series) -> float:
     """Returns the Logarithmic Geometric Mean"""
     n = series.size
-    if n < 2: return 0
+    if n < 2:
+        return 0
     else:
         series = series.fillna(0) + 1
         if npAll(series > 0):

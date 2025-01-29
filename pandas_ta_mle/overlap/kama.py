@@ -14,7 +14,8 @@ def kama(close, length=None, fast=None, slow=None, drift=None, offset=None, **kw
     drift = get_drift(drift)
     offset = get_offset(offset)
 
-    if close is None: return
+    if close is None:
+        return
 
     # Calculate Result
     def weight(length: int) -> float:

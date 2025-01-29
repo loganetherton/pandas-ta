@@ -15,7 +15,8 @@ def eom(high, low, close, volume, length=None, divisor=None, drift=None, offset=
     drift = get_drift(drift)
     offset = get_offset(offset)
 
-    if high is None or low is None or close is None or volume is None: return
+    if high is None or low is None or close is None or volume is None:
+        return
 
     # Calculate Result
     high_low_range = non_zero_range(high, low)

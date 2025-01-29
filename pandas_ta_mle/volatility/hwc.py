@@ -24,7 +24,7 @@ def hwc(close, na=None, nb=None, nc=None, nd=None, scalar=None, channel_eval=Non
 
     m = close.size
     for i in range(m):
-        F = (1.0 - na) * (last_f + last_v + 0.5 * last_a) + na * close[i]
+        F = (1.0 - na) * (last_f + last_v + 0.5 * last_a) + na * close.iloc[i]
         V = (1.0 - nb) * (last_v + last_a) + nb * (F - last_f)
         A = (1.0 - nc) * last_a + nc * (V - last_v)
         result.append((F + V + 0.5 * A))
@@ -38,11 +38,11 @@ def hwc(close, na=None, nb=None, nc=None, nd=None, scalar=None, channel_eval=Non
             # channel width
             chan_width.append(upper[i] - lower[i])
             # channel percentage price position
-            chan_pct_width.append((close[i] - lower[i]) / (upper[i] - lower[i]))
+            chan_pct_width.append((close.iloc[i] - lower[i]) / (upper[i] - lower[i]))
             # print('channel_eval (width|percentageWidth):', chan_width[i], chan_pct_width[i])
 
         # update values
-        last_price = close[i]
+        last_price = close.iloc[i]
         last_a = A
         last_f = F
         last_v = V

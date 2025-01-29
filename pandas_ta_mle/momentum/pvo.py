@@ -16,7 +16,8 @@ def pvo(volume, fast=None, slow=None, signal=None, scalar=None, offset=None, **k
     volume = verify_series(volume, max(fast, slow, signal))
     offset = get_offset(offset)
 
-    if volume is None: return
+    if volume is None:
+        return
 
     # Calculate Result
     fastma = ema(volume, length=fast)

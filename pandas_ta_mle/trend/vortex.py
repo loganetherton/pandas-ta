@@ -16,7 +16,8 @@ def vortex(high, low, close, length=None, drift=None, offset=None, **kwargs):
     drift = get_drift(drift)
     offset = get_offset(offset)
 
-    if high is None or low is None or close is None: return
+    if high is None or low is None or close is None:
+        return
 
     # Calculate Result
     tr = true_range(high=high, low=low, close=close)

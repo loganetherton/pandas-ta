@@ -46,7 +46,7 @@ Calculation:
     Default Inputs:
         drift=1
 
-    PDIST = 2(high - low) - ABS(close - open) + ABS(open - close[drift])
+    PDIST = 2(high - low) - ABS(close - open) + ABS(open - close.iloc[drift])
 
 Args:
     open_ (pd.Series): Series of 'opens's

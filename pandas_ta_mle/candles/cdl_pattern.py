@@ -76,7 +76,8 @@ def cdl_pattern(open_, high, low, close, name: Union[str, Sequence[str]]="all", 
 
             result[f"CDL_{n.upper()}"] = pattern_result
 
-    if len(result) == 0: return
+    if len(result) == 0:
+        return
 
     # Prepare DataFrame to return
     df = DataFrame(result)

@@ -12,7 +12,8 @@ def qstick(open_, close, length=None, offset=None, **kwargs):
     close = verify_series(close, length)
     offset = get_offset(offset)
 
-    if open_ is None or close is None: return
+    if open_ is None or close is None:
+        return
 
     # Calculate Result
     diff = non_zero_range(close, open_)

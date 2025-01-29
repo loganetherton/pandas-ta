@@ -12,7 +12,8 @@ def increasing(close, length=None, strict=None, asint=None, percent=None, drift=
     offset = get_offset(offset)
     percent = float(percent) if is_percent(percent) else False
 
-    if close is None: return
+    if close is None:
+        return
 
     # Calculate Result
     close_ = (1 + 0.01 * percent) * close if percent else close
@@ -59,7 +60,7 @@ or 0 for False.
 
 Calculation:
     if strict:
-        increasing = all(i < j for i, j in zip(close[-length:], close[1:]))
+        increasing = all(i < j for i, j in zip(close.iloc[-length:], close[1:]))
     else:
         increasing = close.diff(length) > 0
 

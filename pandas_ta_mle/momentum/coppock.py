@@ -13,7 +13,8 @@ def coppock(close, length=None, fast=None, slow=None, offset=None, **kwargs):
     close = verify_series(close, max(length, fast, slow))
     offset = get_offset(offset)
 
-    if close is None: return
+    if close is None:
+        return
 
     # Calculate Result
     total_roc = roc(close, fast) + roc(close, slow)

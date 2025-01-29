@@ -14,7 +14,8 @@ def midprice(high, low, length=None, talib=None, offset=None, **kwargs):
     offset = get_offset(offset)
     mode_tal = bool(talib) if isinstance(talib, bool) else True
 
-    if high is None or low is None: return
+    if high is None or low is None:
+        return
 
     # Calculate Result
     if Imports["talib"] and mode_tal:

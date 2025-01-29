@@ -13,7 +13,8 @@ def efi(close, volume, length=None, mamode=None, drift=None, offset=None, **kwar
     drift = get_drift(drift)
     offset = get_offset(offset)
 
-    if close is None or volume is None: return
+    if close is None or volume is None:
+        return
 
     # Calculate Result
     pv_diff = close.diff(drift) * volume

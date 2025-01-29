@@ -13,7 +13,8 @@ def zlma(close, length=None, mamode=None, offset=None, **kwargs):
     close = verify_series(close, length)
     offset = get_offset(offset)
 
-    if close is None: return
+    if close is None:
+        return
 
     # Calculate Result
     lag = int(0.5 * (length - 1))

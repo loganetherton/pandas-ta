@@ -10,7 +10,8 @@ def pwma(close, length=None, asc=None, offset=None, **kwargs):
     close = verify_series(close, length)
     offset = get_offset(offset)
 
-    if close is None: return
+    if close is None:
+        return
 
     # Calculate Result
     triangle = pascals_triangle(n=length - 1, weighted=True)

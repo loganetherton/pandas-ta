@@ -18,7 +18,8 @@ def rvgi(open_, high, low, close, length=None, swma_length=None, offset=None, **
     close = verify_series(close, _length)
     offset = get_offset(offset)
 
-    if open_ is None or high is None or low is None or close is None: return
+    if open_ is None or high is None or low is None or close is None:
+        return
 
     # Calculate Result
     numerator = swma(close_open_range, length=swma_length).rolling(length).sum()

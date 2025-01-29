@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
+import pandas as pd
+
 from .hlc3 import hlc3
 from pandas_ta_mle.utils import get_offset, is_datetime_ordered, verify_series
+
 
 def vwap(high, low, close, volume, anchor=None, offset=None, **kwargs):
     """Indicator: Volume Weighted Average Price (VWAP)"""
@@ -17,10 +20,9 @@ def vwap(high, low, close, volume, anchor=None, offset=None, **kwargs):
         print(f"[!] VWAP volume series is not datetime ordered. Results may not be as expected.")
     if not is_datetime_ordered(typical_price):
         print(f"[!] VWAP price series is not datetime ordered. Results may not be as expected.")
-
     # Calculate Result
-    wp = typical_price * volume
-    vwap  = wp.groupby(wp.index.to_period(anchor)).cumsum()
+    wp: pd.Series = typical_price * volume
+    vwap = wp.groupby(wp.index.to_period(anchor)).cumsum()
     vwap /= volume.groupby(volume.index.to_period(anchor)).cumsum()
 
     # Offset

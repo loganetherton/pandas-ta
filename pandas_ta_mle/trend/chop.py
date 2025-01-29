@@ -18,7 +18,8 @@ def chop(high, low, close, length=None, atr_length=None, ln=None, scalar=None, d
     drift = get_drift(drift)
     offset = get_offset(offset)
 
-    if high is None or low is None or close is None: return
+    if high is None or low is None or close is None:
+        return
 
     # Calculate Result
     diff = high.rolling(length).max() - low.rolling(length).min()

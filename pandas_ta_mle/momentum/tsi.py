@@ -19,7 +19,8 @@ def tsi(close, fast=None, slow=None, signal=None, scalar=None, mamode=None, drif
     mamode = mamode if isinstance(mamode, str) else "ema"
     if "length" in kwargs: kwargs.pop("length")
 
-    if close is None: return
+    if close is None:
+        return
 
     # Calculate Result
     diff = close.diff(drift)

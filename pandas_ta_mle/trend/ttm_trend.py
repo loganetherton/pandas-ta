@@ -13,7 +13,8 @@ def ttm_trend(high, low, close, length=None, offset=None, **kwargs):
     close = verify_series(close, length)
     offset = get_offset(offset)
 
-    if high is None or low is None or close is None: return
+    if high is None or low is None or close is None:
+        return
 
     # Calculate Result
     trend_avg = hl2(high, low)
@@ -62,7 +63,7 @@ Sources:
 Calculation:
     Default Inputs:
         length=6
-    averageprice = (((high[5]+low[5])/2)+((high[4]+low[4])/2)+((high[3]+low[3])/2)+((high[2]+low[2])/2)+((high[1]+low[1])/2)+((high[6]+low[6])/2)) / 6
+    averageprice = (((high.iloc[5]+low[5])/2)+((high[4]+low[4])/2)+((high[3]+low[3])/2)+((high[2]+low[2])/2)+((high[1]+low[1])/2)+((high[6]+low[6])/2)) / 6
 
     if close > averageprice:
         drawcandle(open,high,low,close) coloured(0,255,0)

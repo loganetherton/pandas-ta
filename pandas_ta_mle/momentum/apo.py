@@ -16,7 +16,8 @@ def apo(close, fast=None, slow=None, mamode=None, talib=None, offset=None, **kwa
     offset = get_offset(offset)
     mode_tal = bool(talib) if isinstance(talib, bool) else True
 
-    if close is None: return
+    if close is None:
+        return
 
     # Calculate Result
     if Imports["talib"] and mode_tal:

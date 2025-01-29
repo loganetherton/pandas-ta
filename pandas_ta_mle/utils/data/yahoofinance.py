@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+import traceback
+
+import pandas as pd
 from pandas import DataFrame
 from pandas_ta_mle import Imports, RATE, version
 from .._core import _camelCase2Title
@@ -87,16 +90,19 @@ def yf(ticker: str, **kwargs):
 
         # Ticker Info & Chart History
         yfd = yfra.Ticker(ticker)
-
+        df = pd.DataFrame()
         try:
             df = yfd.history(period=period, interval=interval, proxy=proxy, **kwargs)
-        except:
+        except Exception as e:
+            print(f'Unhandled exception in yf: {e}')
+            traceback.print_tb(e.__traceback__)
             if yfra.__version__ == "0.1.60":
                 print(f"[!] If history is not downloading, see yfinance Issue #760 by user djl0.")
                 print(f"[!] https://github.com/ranaroussi/yfinance/issues/760#issuecomment-877355832")
                 return
 
-        if df.empty: return
+        if df.empty:
+            return
         df.name = ticker
 
         try:

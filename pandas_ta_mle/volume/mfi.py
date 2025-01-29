@@ -17,7 +17,8 @@ def mfi(high, low, close, volume, length=None, talib=None, drift=None, offset=No
     offset = get_offset(offset)
     mode_tal = bool(talib) if isinstance(talib, bool) else True
 
-    if high is None or low is None or close is None or volume is None: return
+    if high is None or low is None or close is None or volume is None:
+        return
 
     # Calculate Result
     if Imports["talib"] and mode_tal:

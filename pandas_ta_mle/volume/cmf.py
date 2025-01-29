@@ -14,7 +14,8 @@ def cmf(high, low, close, volume, open_=None, length=None, offset=None, **kwargs
     volume = verify_series(volume, _length)
     offset = get_offset(offset)
 
-    if high is None or low is None or close is None or volume is None: return
+    if high is None or low is None or close is None or volume is None:
+        return
 
     # Calculate Result
     if open_ is not None:

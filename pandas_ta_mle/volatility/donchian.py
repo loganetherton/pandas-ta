@@ -15,7 +15,8 @@ def donchian(high, low, lower_length=None, upper_length=None, offset=None, **kwa
     low = verify_series(low, _length)
     offset = get_offset(offset)
 
-    if high is None or low is None: return
+    if high is None or low is None:
+        return
 
     # Calculate Result
     lower = low.rolling(lower_length, min_periods=lower_min_periods).min()

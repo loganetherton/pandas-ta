@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 from numpy import exp as npExp
 from numpy import nan as npNaN
+from numpy import dot
+from numpy import sum as npSum
+import numpy as np
 from pandas import Series
 from pandas_ta_mle.utils import get_offset, verify_series
 
@@ -14,7 +17,8 @@ def alma(close, length=None, sigma=None, distribution_offset=None, offset=None, 
     close = verify_series(close, length)
     offset = get_offset(offset)
 
-    if close is None: return
+    if close is None:
+        return
 
     # Pre-Calculations
     m = distribution_offset * (length - 1)
@@ -24,19 +28,35 @@ def alma(close, length=None, sigma=None, distribution_offset=None, offset=None, 
         wtd[i] = npExp(-1 * ((i - m) * (i - m)) / (2 * s * s))
 
     # Calculate Result
-    result = [npNaN for _ in range(0, length - 1)] + [0]
-    for i in range(length, close.size):
-        window_sum = 0
-        cum_sum = 0
-        for j in range(0, length):
-            # wtd = math.exp(-1 * ((j - m) * (j - m)) / (2 * s * s))        # moved to pre-calc for efficiency
-            window_sum = window_sum + wtd[j] * close.iloc[i - j]
-            cum_sum = cum_sum + wtd[j]
+    result_1 = [npNaN for _ in range(0, length - 1)] + [0]
+    # result_2 = [npNaN for _ in range(0, length - 1)] + [0]
+    # print('Beginning ALMA iteration')
+
+    # @TODO VERIFY IMPROVED SOLUTION
+    close_np = close.values
+    for i in range(length, close_np.size):
+        if i % 1_000 == 0:
+            print(f'Iteration: {i}')
+        # Use vectorized NumPy operations to calculate window_sum and cum_sum
+        window_slice = close_np[i - length + 1:i + 1][::-1]  # Get the relevant window and reverse it
+        window_sum = dot(wtd, window_slice)  # Vectorized dot product
+        cum_sum = npSum(wtd)  # Sum of weights (can also be precomputed)
 
         almean = window_sum / cum_sum
-        result.append(npNaN) if i == length else result.append(almean)
+        result_1.append(almean)
 
-    alma = Series(result, index=close.index)
+    # for i in range(length, close.size):
+    #     window_sum = 0
+    #     cum_sum = 0
+    #     for j in range(0, length):
+    #         # wtd = math.exp(-1 * ((j - m) * (j - m)) / (2 * s * s))        # moved to pre-calc for efficiency
+    #         window_sum = window_sum + wtd[j] * close.iloc[i - j]
+    #         cum_sum = cum_sum + wtd[j]
+    #
+    #     almean = window_sum / cum_sum
+    #     result_2.append(npNaN) if i == length else result_2.append(almean)
+
+    alma = Series(result_1, index=close.index)
 
     # Offset
     if offset != 0:

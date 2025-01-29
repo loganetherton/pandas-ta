@@ -12,7 +12,8 @@ def long_run(fast, slow, length=None, offset=None, **kwargs):
     slow = verify_series(slow, length)
     offset = get_offset(offset)
 
-    if fast is None or slow is None: return
+    if fast is None or slow is None:
+        return
 
     # Calculate Result
     pb = increasing(fast, length) & decreasing(slow, length)  # potential bottom or bottom

@@ -15,7 +15,8 @@ def kdj(high=None, low=None, close=None, length=None, signal=None, offset=None, 
     close = verify_series(close, _length)
     offset = get_offset(offset)
 
-    if high is None or low is None or close is None: return
+    if high is None or low is None or close is None:
+        return
 
     # Calculate Result
     highest_high = high.rolling(length).max()

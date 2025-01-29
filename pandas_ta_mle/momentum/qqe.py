@@ -21,7 +21,8 @@ def qqe(close, length=None, smooth=None, factor=None, mamode=None, drift=None, o
     drift = get_drift(drift)
     offset = get_offset(offset)
 
-    if close is None: return
+    if close is None:
+        return
 
     # Calculate Result
     rsi_ = rsi(close, length)

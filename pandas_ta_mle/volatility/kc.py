@@ -16,7 +16,8 @@ def kc(high, low, close, length=None, scalar=None, mamode=None, offset=None, **k
     close = verify_series(close, length)
     offset = get_offset(offset)
 
-    if high is None or low is None or close is None: return
+    if high is None or low is None or close is None:
+        return
 
     # Calculate Result
     use_tr = kwargs.pop("tr", True)

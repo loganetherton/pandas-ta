@@ -17,7 +17,8 @@ def rvi(close, high=None, low=None, length=None, scalar=None, refined=None, thir
     drift = get_drift(drift)
     offset = get_offset(offset)
 
-    if close is None: return
+    if close is None:
+        return
 
     if refined or thirds:
         high = verify_series(high)

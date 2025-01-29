@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import pandas as pd
 from pandas import DataFrame, Series
 from pandas_ta_mle.overlap import ema
 from pandas_ta_mle.utils import get_offset, non_zero_range, verify_series
@@ -11,13 +12,14 @@ def stc(close, tclength=None, fast=None, slow=None, factor=None, offset=None, **
     fast = int(fast) if fast and fast > 0 else 12
     slow = int(slow) if slow and slow > 0 else 26
     factor = float(factor) if factor and factor > 0 else 0.5
-    if slow < fast:                # mandatory condition, but might be confusing
+    if slow < fast:  # mandatory condition, but might be confusing
         fast, slow = slow, fast
     _length = max(tclength, fast, slow)
     close = verify_series(close, _length)
     offset = get_offset(offset)
 
-    if close is None: return
+    if close is None:
+        return
 
     # kwargs allows for three more series (ma1, ma2 and osc) which can be passed
     # here ma1 and ma2 input negate internal ema calculations, osc substitutes
@@ -31,7 +33,8 @@ def stc(close, tclength=None, fast=None, slow=None, factor=None, offset=None, **
         ma1 = verify_series(ma1, _length)
         ma2 = verify_series(ma2, _length)
 
-        if ma1 is None or ma2 is None: return
+        if ma1 is None or ma2 is None:
+            return
         # Calculate Result based on external feeded series
         xmacd = ma1 - ma2
         # invoke shared calculation
@@ -39,7 +42,8 @@ def stc(close, tclength=None, fast=None, slow=None, factor=None, offset=None, **
 
     elif isinstance(osc, Series):
         osc = verify_series(osc, _length)
-        if osc is None: return
+        if osc is None:
+            return
         # Calculate Result based on feeded oscillator
         # (should be ranging around 0 x-axis)
         xmacd = osc
@@ -81,7 +85,7 @@ def stc(close, tclength=None, fast=None, slow=None, factor=None, offset=None, **
     stc.name = f"STC{_props}"
     macd.name = f"STCmacd{_props}"
     stoch.name = f"STCstoch{_props}"
-    stc.category = macd.category = stoch.category ="momentum"
+    stc.category = macd.category = stoch.category = "momentum"
 
     # Prepare DataFrame to return
     data = {stc.name: stc, macd.name: macd, stoch.name: stoch}
@@ -145,19 +149,21 @@ Returns:
 """
 
 
-def schaff_tc(close, xmacd, tclength, factor):
+def schaff_tc(close: pd.Series, xmacd: pd.Series, tclength: int, factor: float):
     # ACTUAL Calculation part, which is shared between operation modes
     # 1St : Stochastic of MACD
-    lowest_xmacd = xmacd.rolling(tclength).min()  # min value in interval tclen
-    xmacd_range = non_zero_range(xmacd.rolling(tclength).max(), lowest_xmacd)
+    lowest_xmacd: pd.Series = xmacd.rolling(tclength).min()  # min value in interval tclen
+    xmacd_range: pd.Series = non_zero_range(xmacd.rolling(tclength).max(), lowest_xmacd)
     m = len(xmacd)
 
     # %Fast K of MACD
-    stoch1, pf = list(xmacd), list(xmacd)
+    xmacd_vals = xmacd.values
+    stoch1 = xmacd_vals.copy()
+    pf = xmacd_vals.copy()
     stoch1[0], pf[0] = 0, 0
     for i in range(1, m):
-        if lowest_xmacd[i] > 0:
-            stoch1[i] = 100 * ((xmacd[i] - lowest_xmacd[i]) / xmacd_range[i])
+        if lowest_xmacd.iloc[i] > 0:
+            stoch1[i] = 100 * ((xmacd.iloc[i] - lowest_xmacd.iloc[i]) / xmacd_range.iloc[i])
         else:
             stoch1[i] = stoch1[i - 1]
         # Smoothed Calculation for % Fast D of MACD
@@ -166,15 +172,17 @@ def schaff_tc(close, xmacd, tclength, factor):
     pf = Series(pf, index=close.index)
 
     # 2nd : Stochastic of smoothed Percent Fast D, 'PF', above
-    lowest_pf = pf.rolling(tclength).min()
-    pf_range = non_zero_range(pf.rolling(tclength).max(), lowest_pf)
+    lowest_pf: pd.Series = pf.rolling(tclength).min()
+    pf_range: pd.Series = non_zero_range(pf.rolling(tclength).max(), lowest_pf)
 
     # % of Fast K of PF
-    stoch2, pff = list(xmacd), list(xmacd)
+    xmacd_vals = xmacd.values
+    stoch2 = xmacd_vals.copy()
+    pff = xmacd_vals.copy()
     stoch2[0], pff[0] = 0, 0
     for i in range(1, m):
-        if pf_range[i] > 0:
-            stoch2[i] = 100 * ((pf[i] - lowest_pf[i]) / pf_range[i])
+        if pf_range.iloc[i] > 0:
+            stoch2[i] = 100 * ((pf.iloc[i] - lowest_pf.iloc[i]) / pf_range.iloc[i])
         else:
             stoch2[i] = stoch2[i - 1]
         # Smoothed Calculation for % Fast D of PF

@@ -23,7 +23,8 @@ def aobv(close, volume, fast=None, slow=None, max_lookback=None, min_lookback=No
     if "length" in kwargs: kwargs.pop("length")
     run_length = kwargs.pop("run_length", 2)
 
-    if close is None or volume is None: return
+    if close is None or volume is None:
+        return
 
     # Calculate Result
     obv_ = obv(close=close, volume=volume, **kwargs)

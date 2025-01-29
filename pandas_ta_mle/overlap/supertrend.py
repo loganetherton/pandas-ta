@@ -16,7 +16,8 @@ def supertrend(high, low, close, length=None, multiplier=None, offset=None, **kw
     close = verify_series(close, length)
     offset = get_offset(offset)
 
-    if high is None or low is None or close is None: return
+    if high is None or low is None or close is None:
+        return
 
     # Calculate Results
     m = close.size
@@ -91,17 +92,17 @@ Calculation:
     LOWERBAND = HL2 - MID
     UPPERBAND = HL2 + MID
 
-    if UPPERBAND[i] < FINAL_UPPERBAND[i-1] and close[i-1] > FINAL_UPPERBAND[i-1]:
+    if UPPERBAND[i] < FINAL_UPPERBAND[i-1] and close.iloc[i-1] > FINAL_UPPERBAND[i-1]:
         FINAL_UPPERBAND[i] = UPPERBAND[i]
     else:
         FINAL_UPPERBAND[i] = FINAL_UPPERBAND[i-1])
 
-    if LOWERBAND[i] > FINAL_LOWERBAND[i-1] and close[i-1] < FINAL_LOWERBAND[i-1]:
+    if LOWERBAND[i] > FINAL_LOWERBAND[i-1] and close.iloc[i-1] < FINAL_LOWERBAND[i-1]:
         FINAL_LOWERBAND[i] = LOWERBAND[i]
     else:
         FINAL_LOWERBAND[i] = FINAL_LOWERBAND[i-1])
 
-    if close[i] <= FINAL_UPPERBAND[i]:
+    if close.iloc[i] <= FINAL_UPPERBAND[i]:
         SUPERTREND[i] = FINAL_UPPERBAND[i]
     else:
         SUPERTREND[i] = FINAL_LOWERBAND[i]

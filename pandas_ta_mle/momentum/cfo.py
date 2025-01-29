@@ -12,7 +12,8 @@ def cfo(close, length=None, scalar=None, drift=None, offset=None, **kwargs):
     drift = get_drift(drift)
     offset = get_offset(offset)
 
-    if close is None: return
+    if close is None:
+        return
 
     # Finding linear regression of Series
     cfo = scalar * (close - linreg(close, length=length, tsf=True))

@@ -16,7 +16,8 @@ def jma(close, length=None, phase=None, offset=None, **kwargs):
     phase = float(phase) if phase and phase != 0 else 0
     close = verify_series(close, _length)
     offset = get_offset(offset)
-    if close is None: return
+    if close is None:
+        return
 
     # Define base variables
     jma = npZeroslike(close)
@@ -24,7 +25,7 @@ def jma(close, length=None, phase=None, offset=None, **kwargs):
     v_sum = npZeroslike(close)
 
     kv = det0 = det1 = ma2 = 0.0
-    jma[0] = ma1 = uBand = lBand = close[0]
+    jma[0] = ma1 = uBand = lBand = close.iloc[0]
 
     # Static variables
     sum_length = 10
@@ -38,7 +39,7 @@ def jma(close, length=None, phase=None, offset=None, **kwargs):
 
     m = close.shape[0]
     for i in range(1, m):
-        price = close[i]
+        price = close.iloc[i]
 
         # Price volatility
         del1 = price - uBand

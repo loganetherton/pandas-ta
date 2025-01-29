@@ -14,7 +14,8 @@ def ema(close, length=None, talib=None, offset=None, **kwargs):
     offset = get_offset(offset)
     mode_tal = bool(talib) if isinstance(talib, bool) else True
 
-    if close is None: return
+    if close is None:
+        return
 
     # Calculate Result
     if Imports["talib"] and mode_tal:
@@ -23,8 +24,8 @@ def ema(close, length=None, talib=None, offset=None, **kwargs):
     else:
         if sma:
             close = close.copy()
-            sma_nth = close[0:length].mean()
-            close[:length - 1] = npNaN
+            sma_nth = close.iloc[0:length].mean()
+            close.iloc[:length - 1] = npNaN
             close.iloc[length - 1] = sma_nth
         ema = close.ewm(span=length, adjust=adjust).mean()
 
@@ -62,8 +63,8 @@ Calculation:
     Default Inputs:
         length=10, adjust=False, sma=True
     if sma:
-        sma_nth = close[0:length].sum() / length
-        close[:length - 1] = np.NaN
+        sma_nth = close.iloc[0:length].sum() / length
+        close.iloc[:length - 1] = np.NaN
         close.iloc[length - 1] = sma_nth
     EMA = close.ewm(span=length, adjust=adjust).mean()
 

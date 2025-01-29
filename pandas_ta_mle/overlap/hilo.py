@@ -17,7 +17,8 @@ def hilo(high, low, close, high_length=None, low_length=None, mamode=None, offse
     close = verify_series(close, _length)
     offset = get_offset(offset)
 
-    if high is None or low is None or close is None: return
+    if high is None or low is None or close is None:
+        return
 
     # Calculate Result
     m = close.size
